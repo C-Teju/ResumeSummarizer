@@ -1,0 +1,136 @@
+<!-- 
+<h2 class="title">Resume Summarizer</h2>
+
+<div class="description">Upload your resume and get a concise summary in seconds.</div>
+
+<form (submit)="onSubmit($event)" class="upload-form">
+  <input type="file" (change)="onFileSelected($event)" accept=".pdf,.doc,.docx" required class="file-input">
+  <button type="submit" class="upload-button">Upload Resume</button>
+</form>
+
+<div *ngIf="summary" class="summary-container">
+  <h3 class="summary-title">Summary:</h3>
+  <table class="summary-table">
+    <tr>
+      <th>Name</th>
+      <td>{{ summary.Name }}</td>
+    </tr>
+    <tr>
+      <th>Email</th>
+      <td>{{ summary.Email }}</td>
+    </tr>
+    <tr>
+      <th>Phone</th>
+      <td>{{ summary.Phone }}</td>
+    </tr>
+    <tr>
+      <th>Education</th>
+      <td>
+        <ul>
+          <li *ngFor="let edu of summary.Education">{{ edu }}</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>Experience</th>
+      <td>
+        <ul>
+          <li *ngFor="let exp of summary.Experience">{{ exp }}</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>Skills</th>
+      <td>
+        <ul>
+          <li *ngFor="let skill of summary.Skills">{{ skill }}</li>
+        </ul>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div *ngIf="errorMessage" class="error-message">
+  <h3>Error:</h3>
+  <p>{{ errorMessage }}</p>
+</div> 
+
+<h3 class="job-description-title">Job Description</h3>
+<div class="job-description-container">
+  <textarea 
+    [(ngModel)]="jobDescription" 
+    placeholder="Enter job description here..." 
+    rows="5" 
+    class="job-description-textarea">
+  </textarea>
+  <button (click)="compareJobDescription()" class="upload-button">Compare</button>
+</div>
+
+<div *ngIf="matchPercentage !== null" class="match-percentage-container">
+  <h3 class="match-percentage-title">Match Percentage:</h3>
+  <p class="match-percentage-value">{{ matchPercentage }}%</p>
+</div>  -->
+<h2 class="title">Resume Summarizer</h2>
+<div class="description">Upload your resume and get a concise summary in seconds.</div>
+
+
+<div class="styled-container upload-form">
+  <form (submit)="onSubmit($event)">
+    <input type="file" (change)="onFileSelected($event)" accept=".pdf,.doc,.docx" required class="file-input">
+    <button type="submit" class="upload-button">Upload</button>
+  </form>
+</div>
+
+<div *ngIf="summary" class="summary-container">
+  <h3 class="summary-title">Summary:</h3>
+  <table class="summary-table">
+    <tr>
+      <th>Name</th>
+      <td>{{ summary.Name }}</td>
+    </tr>
+    <tr>
+      <th>Email</th>
+      <td>{{ summary.Email }}</td>
+    </tr>
+    <tr>
+      <th>Phone</th>
+      <td>{{ summary.Phone }}</td>
+    </tr>
+    <tr>
+      <th>Education</th>
+      <td>
+        <ul>
+          <li *ngFor="let edu of summary.Education">{{ edu }}</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>Experience</th>
+      <td>
+        <ul>
+          <li *ngFor="let exp of summary.Experience">{{ exp }}</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>Skills</th>
+      <td>
+        <ul>
+          <li *ngFor="let skill of summary.Skills">{{ skill }}</li>
+        </ul>
+      </td>
+    </tr>
+  </table>
+</div>
+
+
+<div class="styled-container job-description-container">
+  <h3 class="job-description-title">Job Description</h3>
+  <textarea [(ngModel)]="jobDescription" class="job-description-textarea" placeholder="Enter job description here..." rows="5"></textarea>
+  <button (click)="compareJobDescription()" class="upload-button">Compare</button>
+</div>
+
+<div *ngIf="matchPercentage !== null" class="match-percentage-container">
+  <h3 class="match-percentage-title">Match Percentage:</h3>
+  <p class="match-percentage-value">{{ matchPercentage }}%</p>
+</div>
