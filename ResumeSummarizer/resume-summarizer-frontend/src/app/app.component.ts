@@ -56,9 +56,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
   standalone: true,
-  providers: [
-    ResumeUploadService 
-  ],
+  providers: [ResumeUploadService],
   imports: [CommonModule, FormsModule]
 })
 export class AppComponent {
@@ -67,10 +65,12 @@ export class AppComponent {
   summary: any;
   jobDescription: string = ''; 
   matchPercentage: number | null = null;
+  resumeId: string | null = null;
+ 
 
-  constructor(private http: HttpClient, private resumeUploadService: ResumeUploadService) {}
+  constructor(private http: HttpClient, private resumeUploadService: ResumeUploadService) {  }
 
-  onFileSelected(event: any) {
+  onFileSelected(event: any):void {
     this.selectedFile = event.target.files[0];
   }
 
@@ -84,6 +84,8 @@ export class AppComponent {
         (response:any) => {
           this.summary = response.summary;
           // this.errorMessage = null;
+          this.resumeId = response.resume_id;  // Capture resume_id from response
+          console.log('Resume ID:', this.resumeId);  // Log to verify
         },
         (error:any) => {
           console.error('Error uploading file', error);
@@ -104,6 +106,14 @@ export class AppComponent {
 
       this.http.post('http://127.0.0.1:8000/compare/', payload).subscribe(
         (response: any) => {
+          console.log('Backend response:', response);  // Log the entire response
+          console.log('Response keys:', Object.keys(response));  // Log all keys of the response
+          this.resumeId = response.resume_id;
+          
+
+          
+            // console.log('Resume ID:', resumeId);  // Log it to verify
+            // this.resumeId = resumeId;
           this.matchPercentage = response.matchPercentage;
         },
         (error: any) => {
@@ -114,4 +124,8 @@ export class AppComponent {
     }
   }
   // check if the error handling is proper
+
+  
+
+  
 }

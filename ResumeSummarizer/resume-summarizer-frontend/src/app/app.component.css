@@ -150,6 +150,7 @@ body {
   border: 1px solid #4A90E2; 
   border-radius: 4px;
   background: #e9f5ff;
+  font-size: smaller;
 }
 
 .match-percentage-title {

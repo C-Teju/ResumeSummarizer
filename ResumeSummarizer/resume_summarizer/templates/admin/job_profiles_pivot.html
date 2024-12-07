@@ -1,0 +1,66 @@
+{% comment %} {% extends "admin/change_list.html" %}
+{% block result_list %}
+<table>
+    <thead>
+        <tr>
+            <th>Resumes</th>
+            {% for job_profile in job_profiles %}
+                <th>{{ job_profile.job_title }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Loop through pivot_data directly -->
+        {% for resume_row in pivot_data %}
+            {% for resume_id in resume_row.resumes %}
+                <tr>
+                    <td>{{ resume_id }}</td>
+                    {% for job_profile in job_profiles %}
+                        <td>
+                            {% if job_profile.job_title == resume_row.job_title %}
+                                {{ resume_id }}
+                            {% else %}
+                                -
+                            {% endif %}
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %} {% endcomment %}
+
+
+{% extends "admin/change_list.html" %}
+{% block result_list %}
+<table>
+    <thead>
+        <tr>
+            <th>Job Profile</th>
+            {% for job_profile in job_profiles %}
+                <th>{{ job_profile.job_title }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Resumes</td>
+            {% for job_profile in job_profiles %}
+                <td>
+                    {% if pivot_data[job_profile.job_title] %}
+                        <ul>
+                            {% for resume_id in pivot_data[job_profile.job_title] %}
+                                <li>{{ resume_id }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        No matching resumes
+                    {% endif %}
+                </td>
+            {% endfor %}
+        </tr>
+    </tbody>
+</table>
+{% endblock %}
+

@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 
 export class ResumeUploadService {
   private apiUrl = 'http://127.0.0.1:8000/upload/'; // Django backend URL
-
+  
   constructor(private http: HttpClient) {}
 
   uploadResume(file: File): Observable<any> {
@@ -17,4 +17,5 @@ export class ResumeUploadService {
 
     return this.http.post(this.apiUrl, formData);
   }
+ 
 }
