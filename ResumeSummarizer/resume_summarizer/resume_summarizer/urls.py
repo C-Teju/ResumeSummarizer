@@ -16,10 +16,23 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from resume_app.views import ResumeUploadAPI, JobDescriptionCompareAPI
+from resume_app import views
+from resume_app.views import ResumeUploadAPI, JobDescriptionCompareAPI, list_resumes, list_job_profiles
 
 urlpatterns = [
+    # Admin panel
     path('admin/', admin.site.urls),
-    path('upload/', ResumeUploadAPI.as_view(), name='resume-upload'),
-    path('compare/', JobDescriptionCompareAPI.as_view(), name='compare'),
-]
+
+    # API endpoint to upload a resume
+    path('api/upload/', ResumeUploadAPI.as_view(), name='resume-upload'),
+
+    # API endpoint to compare a resume summary with a job description
+    path('api/compare/', JobDescriptionCompareAPI.as_view(), name='compare'),
+
+    # API endpoint to retrieve the list of resumes
+    path('api/resumes/', list_resumes, name='resume-list'),
+
+    # API endpoint to retrieve the list of job profiles
+    path('api/job-profiles/', list_job_profiles, name='job-profile-list'),
+    
+    ]

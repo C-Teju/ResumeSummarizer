@@ -1,0 +1,19 @@
+<h2>Resume List</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Candidate Name</th>
+      <th>Match Percentage</th>
+      <th>Matched Profile</th>
+      <th>Resume ID</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let resume of resumeList">
+      <td>{{ resume.candidateName || 'N/A' }}</td>
+      <td>{{ resume.matchPercentage || 'N/A' }}%</td>
+      <td>{{ resume.matchedProfile || 'N/A' }}</td>
+      <td>{{ resume.resumeId }}</td>
+    </tr>
+  </tbody>
+</table>

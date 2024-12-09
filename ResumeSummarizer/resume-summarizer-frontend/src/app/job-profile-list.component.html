@@ -1,0 +1,17 @@
+<h2>Job Profile List</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Profile ID</th>
+      <th>Job Title</th>
+      <th>Required Skills</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let profile of jobProfiles">
+      <td>{{ profile.id }}</td>
+      <td>{{ profile.title }}</td>
+      <td>{{ profile.skills }}</td>
+    </tr>
+  </tbody>
+</table>

@@ -1,89 +1,15 @@
-<!-- 
-<h2 class="title">Resume Summarizer</h2>
-
-<div class="description">Upload your resume and get a concise summary in seconds.</div>
-
-<form (submit)="onSubmit($event)" class="upload-form">
-  <input type="file" (change)="onFileSelected($event)" accept=".pdf,.doc,.docx" required class="file-input">
-  <button type="submit" class="upload-button">Upload Resume</button>
-</form>
-
-<div *ngIf="summary" class="summary-container">
-  <h3 class="summary-title">Summary:</h3>
-  <table class="summary-table">
-    <tr>
-      <th>Name</th>
-      <td>{{ summary.Name }}</td>
-    </tr>
-    <tr>
-      <th>Email</th>
-      <td>{{ summary.Email }}</td>
-    </tr>
-    <tr>
-      <th>Phone</th>
-      <td>{{ summary.Phone }}</td>
-    </tr>
-    <tr>
-      <th>Education</th>
-      <td>
-        <ul>
-          <li *ngFor="let edu of summary.Education">{{ edu }}</li>
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <th>Experience</th>
-      <td>
-        <ul>
-          <li *ngFor="let exp of summary.Experience">{{ exp }}</li>
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <th>Skills</th>
-      <td>
-        <ul>
-          <li *ngFor="let skill of summary.Skills">{{ skill }}</li>
-        </ul>
-      </td>
-    </tr>
-  </table>
-</div>
-
-<div *ngIf="errorMessage" class="error-message">
-  <h3>Error:</h3>
-  <p>{{ errorMessage }}</p>
-</div> 
-
-<h3 class="job-description-title">Job Description</h3>
-<div class="job-description-container">
-  <textarea 
-    [(ngModel)]="jobDescription" 
-    placeholder="Enter job description here..." 
-    rows="5" 
-    class="job-description-textarea">
-  </textarea>
-  <button (click)="compareJobDescription()" class="upload-button">Compare</button>
-</div>
-
-<div *ngIf="matchPercentage !== null" class="match-percentage-container">
-  <h3 class="match-percentage-title">Match Percentage:</h3>
-  <p class="match-percentage-value">{{ matchPercentage }}%</p>
-</div>  -->
 <h2 class="title">Resume Summarizer</h2>
 <div class="description">Upload your resume and get a concise summary in seconds.</div>
 
-
+<!-- Upload Form -->
 <div class="styled-container upload-form">
   <form (submit)="onSubmit($event)">
-    <input type="file" (change)="onFileSelected($event)" accept=".pdf,.doc,.docx" required class="file-input">
+    <input type="file" (change)="onFileSelected($event)" accept=".pdf,.doc,.docx" required class="file-input" />
     <button type="submit" class="upload-button">Upload</button>
   </form>
 </div>
 
-
-
-
+<!-- Resume Summary Section -->
 <div *ngIf="summary" class="summary-container">
   <h3 class="summary-title">Summary:</h3>
   <table class="summary-table">
@@ -126,25 +52,54 @@
   </table>
 </div>
 
-<div>
+<!-- Resume ID Section -->
+<div *ngIf="resumeId">
   <h3>Resume ID:</h3>
-  <p *ngIf="resumeId">{{ resumeId }}</p>
+  <p>{{ resumeId }}</p>
 </div>
 
-
+<!-- Job Description and Comparison -->
 <div class="styled-container job-description-container">
   <h3 class="job-description-title">Job Description</h3>
   <textarea [(ngModel)]="jobDescription" class="job-description-textarea" placeholder="Enter job description here..." rows="5"></textarea>
   <button (click)="compareJobDescription()" class="upload-button">Compare</button>
+  <!-- <button (click)="fetchResumes()" class="upload-button">View Resume List</button>
+  <button (click)="fetchJobProfiles()" class="upload-button">View Job Profiles</button> -->
 </div>
-<!-- <div *ngIf="resume_id !==null">
-  <h3 class="match-percentage-title"><strong>Resume ID:</strong> </h3>
-  <p>{{ resume_id }}</p>
-</div> -->
- 
 
-
+<!-- Match Percentage -->
 <div *ngIf="matchPercentage !== null" class="match-percentage-container">
-  <h3 class="match-percentage-title">Match Percentage:<span class="match-percentage-value">   {{ matchPercentage }}%</span></h3>
+  <h3 class="match-percentage-title">
+    Match Percentage: <span class="match-percentage-value">{{ matchPercentage }}%</span>
+  </h3>
 </div>
 
+<div class="buttons">
+  <button (click)="navigateToResumeList()" class="upload-button">View Resume List</button>
+  <button (click)="navigateToJobProfileList()" class="upload-button">View Job Profile List</button>
+</div>
+<!-- <router-outlet></router-outlet> -->
+<!-- app.component.html -->
+<!-- <button routerLink="/resumes" class="upload-button">View Resume List</button>
+<button routerLink="/job-profiles" class="upload-button">View Job Profile List</button> -->
+
+
+<!-- Resume List -->
+<!-- <div *ngIf="resumeList.length > 0" class="resume-list">
+  <h3>Resume List</h3>
+  <ul>
+    <li *ngFor="let resume of resumeList">
+      {{ resume.candidateName || 'N/A' }} ({{ resume.matchPercentage || 'N/A' }}%) - ID: {{ resume.resumeId }}
+    </li>
+  </ul>
+</div> -->
+
+<!-- Job Profile List -->
+<!-- <div *ngIf="jobProfileList.length > 0" class="job-profile-list">
+  <h3>Job Profiles</h3>
+  <ul>
+    <li *ngFor="let profile of jobProfileList">
+      {{ profile.name }} - ID: {{ profile.id }}
+    </li>
+  </ul>
+</div> -->
